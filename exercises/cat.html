@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>  
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">   
+    <meta http-equiv="Content-Script-Type" content="text/javascript">  
+    <script type="text/javascript">    
+        var Cat = function(tiredness, hunger, lonliness, happiness) {
+            this.tiredness = tiredness;  
+            this.hunger = hunger;
+            this.lonliness = lonliness;
+            this.happiness = happiness;
+            this.feed = function(food) {
+                console.log("Mmm I love " + food);
+                this.hunger--;
+            }; 
+            this.sleep= function(hours) {
+                for (var i=0; i<hours; i++) {
+                    console.log("z");
+                    this.tiredness--;    
+                };    
+            };
+            this.pet= function(numberOfPets) {
+                if (numberOfPets < 5) {
+                    for (var i=0; i<numberOfPets; i++) {
+                        console.log("Purrrrrr");
+                        this.lonliness--;
+                        this.happiness++;    
+                    };
+                } else { 
+                    console.log("Hisssss");
+                    this.status();
+                }    
+            };
+            this.status= function() {
+                console.log("Tiredness: " + this.tiredness);
+                console.log("Hunger: " + this.hunger);
+                console.log("Lonliness: " + this.lonliness);
+                console.log("Happiness: " + this.happiness);
+
+            };
+
+        };
+
+        var meeko = new Cat(10,5,20,15);
+        meeko.pet(6);
+
+
+
+
+
+
+
+    </script>  
+  </head>  
+  <body>  
+
+
+  </body>  
+</html>
+
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>  
+  <head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
+    <meta http-equiv="Content-Script-Type" content="text/javascript">  
+    <script type="text/javascript">    
+        var lettersOfWord = ["F","O","X"];
+        var guessedLettersList = ["_","_","_"];
+        var blanks = 3; 
+        var winner = false; 
+
+        function guessLetter(guessedLetter){    
+        for (var i = 0; i < lettersOfWord.length; i++){
+            if (guessedLetter == lettersOfWord[i]) {
+                guessedLettersList[i] = guessedLetter;
+                blanks--; 
+                console.log(guessedLettersList);
+                console.log("Woohoo! Good job.");
+                if (blanks === 0) {
+                    console.log("You won, bro!");
+                    winner = true; 
+                }
+            }
+        }
+        }
+
+        function play(){
+            while (winner === false) {
+                var guess = window.prompt("G> ");
+                guessLetter(guess);
+            }
+        }
+
+        play();
+    </script>  
+  </head>  
+  <body>  
+        You won!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@!!@!@!!!1111111111
+  </body>  
+</html>
+
+

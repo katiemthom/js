@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>  
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">   
+    <meta http-equiv="Content-Script-Type" content="text/javascript">  
+    <script type="text/javascript">    
+        var Booklist = function(numRead, numUnread, nextBook,currentBook,lastBook,allBooks) {
+            this.numRead = numRead;
+            this.numUnread = numUnread;
+            this.nextBook = nextBook;
+            this.currentBook = currentBook;
+            this.lastBook = lastBook;
+            this.allBooks = allBooks;
+            this.add = function(book) {
+                this.allBooks.push(book);
+            };
+            this.changeNext = function() {
+                for (var i =0; i<this.allBooks.length; i++) {
+                    if (this.allBooks[i].read === false){
+                        if (this.allBooks[i] === this.currentBook) {
+                            continue;
+                        } else {
+                            this.nextBook = this.allBooks[i];
+                            break;
+                        }
+                    }
+                }
+            };
+            this.finishCurrentBook = function() {
+                this.currentBook.read = true;
+                this.numRead++;
+                this.numUnread--;
+                this.currentBook.dateRead = new Date();
+                this.lastBook = this.currentBook;
+                this.currentBook = this.nextBook;
+                this.changeNext();
+            };
+        }
+
+        var Book = function(booktitle, genre, author, read, dateRead) {
+            this.booktitle = booktitle;
+            this.genre = genre;
+            this.author = author;
+            this.read = read;
+            this.dateRead = dateRead;
+        }
+
+        var harryPotter0 = new Book("Harry Potter 0", "Children", "JKR", true, new Date(1/1/2001));
+        var harryPotter1 = new Book("Harry Potter 1", "Children", "JKR", false);
+        var harryPotter2 = new Book("Harry Potter 2", "Children", "JKR", false);
+        var harryPotter3 = new Book("Harry Potter 3", "Children", "JKR", false);
+
+        var listOfBooks = [harryPotter0, harryPotter1, harryPotter2, harryPotter3];
+        var firstBooklist = new Booklist(1,3,harryPotter2,harryPotter1,harryPotter0,listOfBooks);
+        console.log(firstBooklist.numRead);
+        console.log(firstBooklist.nextBook);
+        console.log(firstBooklist.allBooks);
+        firstBooklist.finishCurrentBook();
+        console.log(firstBooklist.lastBook.dateRead);
+        console.log(firstBooklist.nextBook);
+        console.log(firstBooklist.allBooks);
+
+    </script>  
+  </head>  
+  <body>  
+ 
+
+  </body>  
+</html>
+
+
